@@ -416,12 +416,23 @@ def WriteFullOTAPackage(input_zip, output_zip):
     script.Unmount("/system")
 
   script.ShowProgress(0.5, 0)
-  script.Print("")
-  script.Print("")
-  script.Print("Slim Roms")
-  script.Print("")
-  script.Print(" www.slimroms.net  ")
-  script.Print("")
+  script.Print("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
+  script.Print(" \_ \))_ _\ ")
+  script.Print(" (_)) (_) (_)_) ")
+  script.Print(" | | | | | | ")
+  script.Print(" | | | | | | ")
+  script.Print(" | |\/| | | | ")
+  script.Print(" |_|/\|_| |_| R A G E ")
+  script.Print(" ")
+  script.Print("\/SLIM BEAN\/")
+  script.Print(" __/\__ __/\__ __/\__ __/\__ __/\__ ")
+  script.Print(" \ / \ / \ / \ / \ / ")
+  script.Print(" /_ _\ /_ _\ /_ _\ /_ _\ /_ _\ ")
+  script.Print(" \/ \/ \/ \/ \/ ")
+  script.Print("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
+  script.Print(" <%%% MIRAGE SMOOTH %%%> ")
+  script.Print(" <%%% By franco-c %%%> ")
+  script.Print("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
 
   if OPTIONS.wipe_user_data:
     script.FormatPartition("/data")
@@ -430,22 +441,25 @@ def WriteFullOTAPackage(input_zip, output_zip):
     WritePolicyConfig(OPTIONS.info_dict["selinux_fc"], output_zip)
 
   script.Print("")
-  script.Print("Format and Mount System, Mount Data...")
+  script.Print(" ************************************ ")
+  script.Print("          Breaking system...          ")
+  script.Print(" ************************************ ")
   script.FormatPartition("/system")
+  script.Print("Mounting /system and /data...")
   script.Mount("/system")
   script.Mount("/data")
+  script.Print("Injecting /system and /data...")
   script.UnpackPackageDir("system", "/system")
   script.UnpackPackageDir("data", "/data")
 
+  script.Print(" ************************* ")
   script.Print("Symlinks and permissions...")
+  script.Print(" ************************* ")
   symlinks = CopySystemFiles(input_zip, output_zip)
   script.MakeSymlinks(symlinks)
 
   boot_img = common.GetBootableImage("boot.img", "boot.img",
                                      OPTIONS.input_tmp, "BOOT")
-  #recovery_img = common.GetBootableImage("recovery.img", "recovery.img",
-  #                                       OPTIONS.input_tmp, "RECOVERY")
-  #MakeRecoveryPatch(OPTIONS.input_tmp, output_zip, recovery_img, boot_img)
 
   Item.GetMetadata(input_zip)
   Item.Get("system").SetPermissions(script)
@@ -463,6 +477,8 @@ def WriteFullOTAPackage(input_zip, output_zip):
   script.WriteRawImage("/boot", "boot.img")
 
   script.ShowProgress(0.1, 0)
+  script.Print(" ")
+  script.Print("Installation Completed!")
   device_specific.FullOTA_InstallEnd()
 
   if OPTIONS.extra_script is not None:
