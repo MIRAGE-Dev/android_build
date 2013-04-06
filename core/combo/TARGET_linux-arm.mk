@@ -88,7 +88,8 @@ ifeq ($(TARGET_USE_O3),true)
     TARGET_thumb_CFLAGS :=  -mthumb \
                             -O3 \
                             -fomit-frame-pointer \
-                            -fno-strict-aliasing
+                            -fno-strict-aliasing \
+                            -fno-tree-vectorize
 else
     TARGET_thumb_CFLAGS :=  -mthumb \
                             -Os \
