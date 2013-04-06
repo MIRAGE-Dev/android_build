@@ -425,13 +425,15 @@ def WriteFullOTAPackage(input_zip, output_zip):
   script.Print(" |_|/\|_| |_| R A G E ")
   script.Print(" ")
   script.Print("\/SLIM BEAN\/")
-  script.Print(" __/\__ __/\__ __/\__ __/\__ __/\__ ")
-  script.Print(" \ / \ / \ / \ / \ / ")
-  script.Print(" /_ _\ /_ _\ /_ _\ /_ _\ /_ _\ ")
-  script.Print(" \/ \/ \/ \/ \/ ")
+  script.Print(" ")
+  script.Print("   __/\__ __/\__  __/\__  __/\__  __/\__      ")
+  script.Print("   \    / \    /  \    /  \    /  \    /      ")
+  script.Print("   /_  _\ /_  _\  /_  _\  /_  _\  /_  _\      ")
+  script.Print("     \/     \/      \/      \/      \/        ")
   script.Print("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
   script.Print(" <%%% MIRAGE SMOOTH %%%> ")
   script.Print(" <%%% By franco-c %%%> ")
+  script.Print(" <%%% MIRAGE BEAN V1.1 %%%> ")
   script.Print("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
 
   if OPTIONS.wipe_user_data:
@@ -440,7 +442,7 @@ def WriteFullOTAPackage(input_zip, output_zip):
   if "selinux_fc" in OPTIONS.info_dict:
     WritePolicyConfig(OPTIONS.info_dict["selinux_fc"], output_zip)
 
-  script.Print("")
+  script.Print(" ")
   script.Print(" ************************************ ")
   script.Print("          Breaking system...          ")
   script.Print(" ************************************ ")
@@ -452,6 +454,7 @@ def WriteFullOTAPackage(input_zip, output_zip):
   script.UnpackPackageDir("system", "/system")
   script.UnpackPackageDir("data", "/data")
 
+  script.Print(" ")
   script.Print(" ************************* ")
   script.Print("Symlinks and permissions...")
   script.Print(" ************************* ")
