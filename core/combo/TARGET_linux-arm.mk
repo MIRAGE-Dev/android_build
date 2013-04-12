@@ -70,9 +70,10 @@ ifeq ($(TARGET_USE_O3),true)
 TARGET_arm_CFLAGS :=    -O3 \
                         -fomit-frame-pointer \
                         -fstrict-aliasing    \
+                        -fno-zero-initialized-in-bss \
                         -funswitch-loops
 else
-TARGET_arm_CFLAGS :=    -Os \
+TARGET_arm_CFLAGS :=    -O2 \
                         -fomit-frame-pointer \
                         -fstrict-aliasing    \
                         -fno-zero-initialized-in-bss \
@@ -92,7 +93,7 @@ ifeq ($(TARGET_USE_O3),true)
                             -fno-tree-vectorize
 else
     TARGET_thumb_CFLAGS :=  -mthumb \
-                            -Os \
+                            -O2 \
                             -fomit-frame-pointer \
                             -fno-strict-aliasing
 endif
