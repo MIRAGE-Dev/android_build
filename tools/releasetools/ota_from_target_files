@@ -431,9 +431,9 @@ def WriteFullOTAPackage(input_zip, output_zip):
   script.Print("   /_  _\ /_  _\  /_  _\  /_  _\  /_  _\      ")
   script.Print("     \/     \/      \/      \/      \/        ")
   script.Print("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
-  script.Print(" <%%% MIRAGE BEAN %%%> ")
+  script.Print(" <%%% MIRAGE SMOOTH %%%> ")
   script.Print(" <%%% By franco-c %%%> ")
-  script.Print(" <%%% MIRAGE BEAN %%%> ")
+  script.Print(" <%%% MIRAGE BEAN V1.1 %%%> ")
   script.Print("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
 
   if OPTIONS.wipe_user_data:

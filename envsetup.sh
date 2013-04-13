@@ -1284,10 +1284,10 @@ function mkapush() {
 function reposync() {
     case `uname -s` in
         Darwin)
-            repo sync -f -j 12 "$@"
+            repo sync -j 4 "$@"
             ;;
         *)
-            schedtool -B -n 1 -e ionice -n 1 repo sync -f -j 12 "$@"
+            schedtool -B -n 1 -e ionice -n 1 repo sync -j 4 "$@"
             ;;
     esac
 }
