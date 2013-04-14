@@ -69,10 +69,11 @@ TARGET_NO_UNDEFINED_LDFLAGS := -Wl,--no-undefined
 ifeq ($(TARGET_USE_O3),true)
 TARGET_arm_CFLAGS :=    -O3 \
                         -fomit-frame-pointer \
-                        -fstrict-aliasing    \
-                        -funswitch-loops
+                        -fstrict-aliasing \
+                        -funswitch-loops \
+                        -fno-tree-vectorize
 else
-TARGET_arm_CFLAGS :=    -Os \
+TARGET_arm_CFLAGS :=    -O2 \
                         -fomit-frame-pointer \
                         -fstrict-aliasing    \
                         -fno-zero-initialized-in-bss \
