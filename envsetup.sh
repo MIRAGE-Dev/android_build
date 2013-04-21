@@ -61,12 +61,12 @@ function check_product()
         return
     fi
 
-    if (echo -n $1 | grep -q -e "^slim_") ; then
-       SLIM_BUILD=$(echo -n $1 | sed -e 's/^slim_//g')
+    if (echo -n $1 | grep -q -e "^mirage_") ; then
+       MIRAGE_BUILD=$(echo -n $1 | sed -e 's/^mirage_//g')
     else
-       SLIM_BUILD=
+       MIRAGE_BUILD=
     fi
-    export SLIM_BUILD
+    export MIRAGE_BUILD
 
     CALLED_FROM_SETUP=true BUILD_SYSTEM=build/core \
         TARGET_PRODUCT=$1 \
@@ -442,7 +442,7 @@ function print_lunch_menu()
     echo
     echo "You're building on" $uname
     echo
-    if [ "z${slim_DEVICES_ONLY}" != "z" ]; then
+    if [ "z${mirage_DEVICES_ONLY}" != "z" ]; then
        echo "Breakfast menu... pick a combo:"
     else
        echo "Lunch menu... pick a combo:"
@@ -456,7 +456,7 @@ function print_lunch_menu()
         i=$(($i+1))
     done
 
-    if [ "z${slim_DEVICES_ONLY}" != "z" ]; then
+    if [ "z${mirage_DEVICES_ONLY}" != "z" ]; then
        echo "... and don't forget the bacon!"
     fi
 
@@ -479,10 +479,10 @@ function brunch()
 function breakfast()
 {
     target=$1
-    slim_DEVICES_ONLY="true"
+    mirage_DEVICES_ONLY="true"
     unset LUNCH_MENU_CHOICES
     add_lunch_combo full-eng
-    for f in `/bin/ls vendor/slim/vendorsetup.sh 2> /dev/null`
+    for f in `/bin/ls vendor/mirage/vendorsetup.sh 2> /dev/null`
         do
             echo "including $f"
             . $f
@@ -498,8 +498,8 @@ function breakfast()
             # A buildtype was specified, assume a full device name
             lunch $target
         else
-            # This is probably just the slim model name
-            lunch slim_$target-userdebug
+            # This is probably just the mirage model name
+            lunch mirage_$target-userdebug
         fi
     fi
     return $?
@@ -1226,7 +1226,7 @@ return $retval
 function mbot() {
     unset LUNCH_MENU_CHOICES
     croot
-    ./vendor/slim/bot/deploy.sh
+    ./vendor/mirage/bot/deploy.sh
 }
 
 function mkapush() {
