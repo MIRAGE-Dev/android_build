@@ -144,7 +144,6 @@ PRODUCT_PACKAGES += \
     mdnsd \
     mms-common \
     network \
-    okhttp \
     pand \
     requestsync \
     screencap \
