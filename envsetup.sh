@@ -1218,7 +1218,7 @@ function mka() {
 if [ $retval -eq 0 ]; then
     bash -c 'j=0; while [ $j -lt 10 ]; do j=`expr $j + 1`; notify-send "MIRAGE" "'$TARGET_PRODUCT' build completed." -i '$(gettop)/build/buildwin.png' -t 2000; sleep 1; done' &
 else
-    bash -c 'j=0; while [ $j -lt 20 ]; do j=`expr $j + 1`; notify-send "MIRAGE" "'$TARGET_PRODUCT' build FAILED." -i '$(gettop)/build/buildfailed.png' -t 500; sleep 1; done' &
+    bash -c 'j=0; while [ $j -lt 20 ]; do j=`expr $j + 1`; notify-send "MIRAGE" "'$TARGET_PRODUCT' build FAILED." -i '$(gettop)/build/buildfailed.png' -t 750; sleep 1; done' &
 fi
 return $retval
 }
@@ -1226,7 +1226,7 @@ return $retval
 function mbot() {
     unset LUNCH_MENU_CHOICES
     croot
-    ./vendor/mirage/bot/deploy.sh
+    . $(gettop)/vendor/mirage/bot/deploy.sh
 }
 
 function mkapush() {
