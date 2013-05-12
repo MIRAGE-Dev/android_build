@@ -82,7 +82,6 @@ endif
 
 endif # CALLED_FROM_SETUP
 
-
 ifneq ($(PRINT_BUILD_CONFIG),)
 HOST_OS_EXTRA:=$(shell python -c "import platform; print(platform.platform())")
 $(info ============================================)

@@ -47,13 +47,13 @@ $(combo_target)HAVE_STRLCAT := 0
 $(combo_target)HAVE_KERNEL_MODULES := 0
 
 ifneq ($(TARGET_USE_03),true)
-$(combo_target)GLOBAL_CFLAGS := -fno-exceptions -Wno-multichar
-$(combo_target)RELEASE_CFLAGS := -O3 -g -fno-strict-aliasing
+$(combo_target)GLOBAL_CFLAGS := -O3 -g -Wstrict-aliasing=3 -Werror=strict-aliasing
+$(combo_target)RELEASE_CFLAGS := -Wno-error=strict-aliasing
 $(combo_target)GLOBAL_LDFLAGS := -Wl,-O3
 else
-$(combo_target)GLOBAL_CFLAGS := -fno-exceptions -Wno-multichar
-$(combo_target)RELEASE_CFLAGS := -Os -g -fno-strict-aliasing
-$(combo_target)GLOBAL_LDFLAGS :=
+$(combo_target)GLOBAL_CFLAGS := -O2 -fgcse-after-reload -fipa-cp-clone -fpredictive-commoning -fsched-spec-load -funswitch-loops -fvect-cost-model -g -Wstrict-aliasing=3 -Werror=strict-aliasing
+$(combo_target)RELEASE_CFLAGS := -Werror=strict-aliasing
+$(combo_target)GLOBAL_LDFLAGS := -Wl,-O2
 endif
 $(combo_target)GLOBAL_ARFLAGS := crsP
 
