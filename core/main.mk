@@ -250,35 +250,33 @@ ADDITIONAL_BUILD_PROPERTIES += ro.build.selinux=1
 endif # HAVE_SELINUX
 
 ## user/userdebug ##
-
 user_variant := $(filter user userdebug,$(TARGET_BUILD_VARIANT))
 enable_target_debugging := true
 tags_to_install :=
 ifneq (,$(user_variant))
-  # Target is secure in user builds.
-  ADDITIONAL_DEFAULT_PROPERTIES += ro.secure=1
+  # Security is for bitches.
+  ADDITIONAL_DEFAULT_PROPERTIES += ro.secure=0
 
-  ifeq ($(user_variant),userdebug)
+  ifeq ($(user_variant),eng)
     # Pick up some extra useful tools
     tags_to_install += debug
 
+    # this makes things a bit spammy
+    enable_target_debugging := true
+
     # Enable Dalvik lock contention logging for userdebug builds.
-    ADDITIONAL_BUILD_PROPERTIES += dalvik.vm.lockprof.threshold=500
-  else
-    # Disable debugging in plain user builds.
-    enable_target_debugging :=
+    ADDITIONAL_BUILD_PROPERTIES += dalvik.vm.lockprof.threshold=850
+  else 
+      ifeq ($(user_variant),userdebug)
+        enable_target_debugging := true
+      else
+        # Disable debugging in plain user builds.
+        enable_target_debugging :=
+      endif
   endif
 
-  # Turn on Dalvik preoptimization for user builds, but only if not
-  # explicitly disabled and the build is running on Linux (since host
-  # Dalvik isn't built for non-Linux hosts).
-  ifneq (true,$(DISABLE_DEXPREOPT))
-    ifeq ($(user_variant),user)
-      ifeq ($(HOST_OS),linux)
-        WITH_DEXPREOPT := true
-      endif
-    endif
-  endif
+  # Forcefully turn off odex
+  WITH_DEXPREOPT := false
 
   # Disallow mock locations by default for user builds
   ADDITIONAL_DEFAULT_PROPERTIES += ro.allow.mock.location=0
@@ -303,7 +301,6 @@ else # !enable_target_debugging
 endif # !enable_target_debugging
 
 ## eng ##
-
 ifeq ($(TARGET_BUILD_VARIANT),eng)
 tags_to_install := debug eng
 ifneq ($(filter ro.setupwizard.mode=ENABLED, $(call collapse-pairs, $(ADDITIONAL_BUILD_PROPERTIES))),)
