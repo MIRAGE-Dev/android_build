@@ -70,8 +70,6 @@ ifeq ($(TARGET_USE_O3),true)
 TARGET_arm_CFLAGS :=    -O3 \
                         -fomit-frame-pointer \
                         -fstrict-aliasing \
-                        -Wstrict-aliasing=3 \
-                        -Werror=strict-aliasing \
                         -funswitch-loops \
                         -fno-tree-vectorize \
                         -pipe
@@ -94,9 +92,7 @@ ifeq ($(TARGET_USE_O3),true)
                             -fomit-frame-pointer \
                             -fno-strict-aliasing \
                             -fno-tree-vectorize \
-                            -pipe \
-                            -Wstrict-aliasing=3 \
-                            -Werror=strict-aliasing
+                            -pipe
 else
     TARGET_thumb_CFLAGS :=  -mthumb \
                             -Os \
@@ -178,27 +174,14 @@ endif
 TARGET_GLOBAL_CPPFLAGS += -fvisibility-inlines-hidden
 
 # More flags/options can be added here
-ifndef TARGET_EXTRA_CFLAGS
 TARGET_RELEASE_CFLAGS := \
-        -DNDEBUG \
-        -g \
-        -Wstrict-aliasing=3 \
-        -Werror=strict-aliasing \
-        -fgcse-after-reload \
-        -frerun-cse-after-loop \
-        -frename-registers \
-        -pipe
-else
-TARGET_RELEASE_CFLAGS += \
-        -DNDEBUG \
-        -g \
-        -Wstrict-aliasing=3 \
-        -Werror=strict-aliasing \
-        -fgcse-after-reload \
-        -frerun-cse-after-loop \
-        -frename-registers \
-        -pipe
-endif
+			-DNDEBUG \
+			-g \
+			-Wstrict-aliasing=2 \
+			-fgcse-after-reload \
+			-frerun-cse-after-loop \
+			-frename-registers \
+                        -pipe
 
 libc_root := bionic/libc
 libm_root := bionic/libm
