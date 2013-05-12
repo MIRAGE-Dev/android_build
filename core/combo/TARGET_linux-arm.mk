@@ -71,8 +71,7 @@ TARGET_arm_CFLAGS :=    -O3 \
                         -fomit-frame-pointer \
                         -fstrict-aliasing \
                         -funswitch-loops \
-                        -fno-tree-vectorize \
-                        -pipe
+                        -fno-tree-vectorize
 else
 TARGET_arm_CFLAGS :=    -O2 \
                         -fomit-frame-pointer \
@@ -91,8 +90,7 @@ ifeq ($(TARGET_USE_O3),true)
                             -O3 \
                             -fomit-frame-pointer \
                             -fno-strict-aliasing \
-                            -fno-tree-vectorize \
-                            -pipe
+                            -fno-tree-vectorize
 else
     TARGET_thumb_CFLAGS :=  -mthumb \
                             -Os \
@@ -127,7 +125,6 @@ TARGET_GLOBAL_CFLAGS += \
 			-Werror=format-security \
 			-D_FORTIFY_SOURCE=2 \
 			-fno-short-enums \
-                        -pipe \
 			$(arch_variant_cflags)
 
 android_config_h := $(call select-android-config-h,linux-arm)
@@ -180,8 +177,7 @@ TARGET_RELEASE_CFLAGS := \
 			-Wstrict-aliasing=2 \
 			-fgcse-after-reload \
 			-frerun-cse-after-loop \
-			-frename-registers \
-                        -pipe
+			-frename-registers
 
 libc_root := bionic/libc
 libm_root := bionic/libm
