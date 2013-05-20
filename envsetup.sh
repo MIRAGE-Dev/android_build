@@ -1318,7 +1318,7 @@ fi
 
 # Execute the contents of any vendorsetup.sh files we can find.
 # back up /bin/ls vendor/*/vendorsetup.sh vendor/*/*/vendorsetup.sh device/*/*/vendorsetup.sh
-for f in `/bin/ls vendor/mirage/vendorsetup.sh device/*/*/vendorsetup.sh 2> /dev/null`
+for f in `/bin/ls vendor/mirage/vendorsetup.sh 2> /dev/null`
 do
     echo "including $f"
     . $f
