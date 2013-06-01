@@ -77,14 +77,7 @@ TARGET_arm_CFLAGS :=    -O3 \
                         -fomit-frame-pointer \
                         -fstrict-aliasing \
                         -funswitch-loops \
-                        -fno-tree-vectorize \
-                        -Wstrict-aliasing=2 \
-                        -Werror=strict-aliasing \
-                        -fno-tree-vectorize \
-                        -funsafe-math-optimizations \
-                        -Wno-unused-parameter \
-                        -Wno-unused-value \
-                        -Wno-unused-function
+                        -fno-tree-vectorize
 else
 TARGET_arm_CFLAGS :=    -O2 \
                         -fomit-frame-pointer \
