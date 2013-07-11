@@ -87,7 +87,7 @@ VERSION_CHECK_SEQUENCE_NUMBER := 3
 -include $(OUT_DIR)/versions_checked.mk
 ifneq ($(VERSION_CHECK_SEQUENCE_NUMBER),$(VERSIONS_CHECKED))
 
-$(info Checking build tools versions...)
+$(info Checking MIRAGE SYSTEM...)
 
 ifneq ($(HOST_OS),windows)
 ifneq ($(HOST_OS)-$(HOST_ARCH),darwin-ppc)
@@ -126,35 +126,11 @@ java_version := $(shell java -version 2>&1 | head -n 1 | grep '^java .*[ "]1\.6[
 ifneq ($(shell java -version 2>&1 | grep -i openjdk),)
 java_version :=
 endif
-ifeq ($(strip $(java_version)),)
-$(info ************************************************************)
-$(info You are attempting to build with the incorrect version)
-$(info of java.)
-$(info $(space))
-$(info Your version is: $(shell java -version 2>&1 | head -n 1).)
-$(info The correct version is: Java SE 1.6.)
-$(info $(space))
-$(info Please follow the machine setup instructions at)
-$(info $(space)$(space)$(space)$(space)https://source.android.com/source/download.html)
-$(info ************************************************************)
-endif
 
 # Check for the correct version of javac
 javac_version := $(shell javac -version 2>&1 | head -n 1 | grep '[ "]1\.6[\. "$$]')
-ifeq ($(strip $(javac_version)),)
-$(info ************************************************************)
-$(info You are attempting to build with the incorrect version)
-$(info of javac.)
-$(info $(space))
-$(info Your version is: $(shell javac -version 2>&1 | head -n 1).)
-$(info The correct version is: 1.6.)
-$(info $(space))
-$(info Please follow the machine setup instructions at)
-$(info $(space)$(space)$(space)$(space)https://source.android.com/source/download.html)
-$(info ************************************************************)
-$(error stop)
-endif
 
+# Whether to build EMULATOR or not
 BUILD_EMULATOR := false
 
 $(shell echo 'VERSIONS_CHECKED := $(VERSION_CHECK_SEQUENCE_NUMBER)' \
