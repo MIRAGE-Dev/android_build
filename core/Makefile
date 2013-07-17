@@ -1316,7 +1316,7 @@ $(INTERNAL_OTA_PACKAGE_TARGET): $(BUILT_TARGET_FILES_PACKAGE) $(DISTTOOLS)
 
 .PHONY: otapackage bacon bootzip
 otapackage: $(INTERNAL_OTA_PACKAGE_TARGET)
-bootzip: bootimage
+bootzip: bootimage \
         $(BOOT_ZIP_FROM_IMAGE_SCRIPT) \
         $(recovery_fstab) \
         $(OUT) \
