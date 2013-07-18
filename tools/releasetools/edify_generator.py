@@ -79,6 +79,12 @@ class EdifyGenerator(object):
            ');')
     self.script.append(self._WordWrap(cmd))
 
+  def DeleteRecursive(self, file_list):
+    """Delete all dirs, their files, and files in file_list."""
+    if not file_list: return
+    cmd = "delete_recursive(" + ",\0".join(['"%s"' % (i,) for i in file_list]) + ");"
+    self.script.append(self._WordWrap(cmd)) 
+
   def AssertOlderBuild(self, timestamp):
     """Assert that the build on the device is older (or the same as)
     the given timestamp."""
