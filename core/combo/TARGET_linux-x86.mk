@@ -22,6 +22,12 @@ ifeq ($(strip $(TARGET_ARCH_VARIANT)),)
 TARGET_ARCH_VARIANT := x86
 endif
 
+ifeq ($(strip $(TARGET_GCC_VERSION_EXP)),)
+TARGET_GCC_VERSION := 4.7
+else
+TARGET_GCC_VERSION := $(TARGET_GCC_VERSION_EXP)
+endif
+
 # Include the arch-variant-specific configuration file.
 # Its role is to define various ARCH_X86_HAVE_XXX feature macros,
 # plus initial values for TARGET_GLOBAL_CFLAGS
@@ -84,6 +90,7 @@ TARGET_GLOBAL_CFLAGS += \
 			-Ulinux \
 			-Wa,--noexecstack \
 			-Werror=format-security \
+			-D_FORTIFY_SOURCE=1 \
 			-Wstrict-aliasing=2 \
 			-fPIC -fPIE \
 			-ffunction-sections \
@@ -144,6 +151,7 @@ TARGET_GLOBAL_LDFLAGS += -m32
 
 TARGET_GLOBAL_LDFLAGS += -Wl,-z,noexecstack
 TARGET_GLOBAL_LDFLAGS += -Wl,-z,relro -Wl,-z,now
+TARGET_GLOBAL_LDFLAGS += -Wl,--warn-shared-textrel
 TARGET_GLOBAL_LDFLAGS += -Wl,--gc-sections
 
 TARGET_C_INCLUDES := \
